@@ -126,7 +126,7 @@ cdn:
 # ---------------
 avatar:
 
-top_img: 君の知らない物語.jpg
+top_img:
 
 post_meta:
   date_type: created # created or updated
