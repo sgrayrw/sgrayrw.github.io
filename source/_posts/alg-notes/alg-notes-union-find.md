@@ -61,7 +61,7 @@ Since trees could get tall, method `root` could be expensive.
 ## Quick Union Improvements
 
 ### Improvement 1: weighted quick union
-Use weighted quick union: avoid putting larger trees under smaller trees, in terms of the number of nodes ([doesn't quite matter](https://stackoverflow.com/a/30958496/10467797) whether comparing by size of height).
+Use weighted quick union: avoid putting larger trees under smaller trees, in terms of the number of nodes. ([doesn't quite matter](https://stackoverflow.com/a/30958496/10467797) whether comparing by size or height)
 
 {% asset_img qu_vs_quweighted.png quick union vs weighted quick union %}
 
