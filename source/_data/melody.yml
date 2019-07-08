@@ -126,7 +126,7 @@ cdn:
 # ---------------
 avatar:
 
-top_img: https://raw.githubusercontent.com/sgrayrw/sgrayrw.github.io/source/source/img/君の知らない物語.JPG
+top_img: 君の知らない物語.jpg
 
 post_meta:
   date_type: created # created or updated
