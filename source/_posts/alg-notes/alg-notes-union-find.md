@@ -1,6 +1,6 @@
 ---
 title: Algorithm Notes -- Union Find
-date: 2019-07-08 14:25:01
+date: 2019-07-08
 tags: Algorithm
 categories: Algorithm Notes
 ---
