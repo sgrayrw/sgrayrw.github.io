@@ -1,10 +1,8 @@
 ---
-title: Algorithm Study Notes
+title: Algorithm Study Notes -- Union Find
 date: 2019-07-08 14:25:01
 tags:
 ---
-
-# Union Find
 
 ## Dynamic Connectivity
 Two main ops:
@@ -22,6 +20,7 @@ This way,
 - find -> check if two objects are in the same component
 - union -> union two components
 
+
 ## Quick Find
 An *eager algorithm* to solve dynamic connectivity problem.
 
@@ -35,6 +34,7 @@ An *eager algorithm* to solve dynamic connectivity problem.
 **Time complexity**
 - find: O(1)
 - union: O(n), too expensive
+
 
 ## Quick Union
 A *lazy approach*.
@@ -56,6 +56,7 @@ therefore associates each item with a root, which represents the connected compo
 	- union: O(n)
 Since trees could get tall, method `root` could be expensive.
 
+
 ## Quick Union Improvements
 
 ### Improvement 1: weighted quick union
@@ -75,6 +76,7 @@ Use weighted quick union: avoid putting larger trees under smaller trees, in ter
 	- for the tree here and BST in general, in terms of time, `m` time allows <code>2<sup>m</sup></code> elements to be searched, so `n` elements require at most `log n` time (inverse relation)
 	- find: O(log n)
 	- union: O(log n)
+
 
 ### Improvement 2: path compression
 On the way up to the root, make every other node point to its grandparent (halfing path length w/ constant extra time)
@@ -98,4 +100,4 @@ func root(i int) int {
 
 
 ## Applications
-Percolation model, etc.
+*Percolation model*, etc.
