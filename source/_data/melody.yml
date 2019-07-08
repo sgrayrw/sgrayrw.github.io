@@ -126,7 +126,7 @@ cdn:
 # ---------------
 avatar:
 
-top_img: true # false or url of img
+top_img: ../../../source/img/君の知らない物語.jpg
 
 post_meta:
   date_type: created # created or updated
