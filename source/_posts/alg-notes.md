@@ -16,6 +16,8 @@ Two main ops:
 
 *Connected components*: maximal *set* of objects that are mutually connected.
 
+<!-- more -->
+
 This way,
 - find -> check if two objects are in the same component
 - union -> union two components
