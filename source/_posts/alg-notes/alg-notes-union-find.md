@@ -11,11 +11,11 @@ Two main ops:
 - find/connected query: is there a path connecting two objects?
 	(not actually finding the path, which is in course part II)
 
+<!-- more -->
+
 "is connected to" is an *equivalence relation*. (reflexive, symmetric, transitive)
 
 *Connected components*: maximal *set* of objects that are mutually connected.
-
-<!-- more -->
 
 This way,
 - find -> check if two objects are in the same component
