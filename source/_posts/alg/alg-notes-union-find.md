@@ -88,6 +88,7 @@ func root(i int) int {
 		arr[i] = arr[arr[i]] // rebase parent
 		i = arr[i]
 	}
+	return i
 }
 {% endcodeblock %}
 
