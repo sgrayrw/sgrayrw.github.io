@@ -5,4 +5,10 @@ tags: Algorithm
 categories: Algorithm Notes
 ---
 
-**stack vs. queue**: stack *LIFO* (last in first out), queue *FIFO* (first in first out).
+**stack vs. queue**
+- stack *LIFO* (last in first out)
+	- `push`, `pop`
+- queue *FIFO* (first in first out)
+	- `enqueue`, `dequeue`
+
+<!-- more -->
