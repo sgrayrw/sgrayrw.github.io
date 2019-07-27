@@ -13,7 +13,7 @@ categories: Algorithm Notes
 
 <!-- more -->
 
-*efficient use of memory*
+**efficient use of memory**
 When implementing stacks using array in Java:
 
 {% codeblock lang:java %}
