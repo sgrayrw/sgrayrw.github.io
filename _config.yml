@@ -79,5 +79,5 @@ theme: melody
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/sgrayrw/sgrayrw.github.io.git
+  repo: https://github_token@github.com/sgrayrw/sgrayrw.github.io.git
   branch: [master]
