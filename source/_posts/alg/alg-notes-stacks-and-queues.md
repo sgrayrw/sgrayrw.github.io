@@ -5,7 +5,7 @@ tags: Algorithm
 categories: Algorithm Notes
 ---
 
-**stack vs. queue**
+**Stack vs. Queue**
 - stack *LIFO* (last in first out)
 	- `push`, `pop`
 - queue *FIFO* (first in first out)
@@ -13,7 +13,7 @@ categories: Algorithm Notes
 
 <!-- more -->
 
-**efficient use of memory**
+**Efficient use of memory**
 When implementing stacks using array in Java:
 
 {% codeblock lang:java %}
