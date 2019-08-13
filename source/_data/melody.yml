@@ -126,7 +126,7 @@ cdn:
 # ---------------
 avatar:
 
-top_img: https://rayrw-cn.oss-cn-shenzhen.aliyuncs.com/website/君の知らない物語.JPG?Expires=1565161484&OSSAccessKeyId=TMP.hV774KbNwQqPyCJdxqhzXuJ23kJvoNGLo65pXTjevHrWLeXp9xpjoo4uQMhcoyTfQ4BSxuftuHpoerDDF5GzXKWuzGLH9ZBQr4NTPSx2Mx8ogK8kgtHRKArpkEXkwQ.tmp&Signature=HvkViY4piGzwW0ymRWto1spvhYA%3D
+top_img: https://imgchr.com/i/ZymiwV
 
 post_meta:
   date_type: created # created or updated
