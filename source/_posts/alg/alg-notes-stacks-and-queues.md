@@ -120,7 +120,6 @@ interface Iterator<T> {
 	T next();
 	void remove(); // not implementing this here
 }
-
 ```
 
 Linked-list implementation of stacks that implements `iterable`:
@@ -145,7 +144,6 @@ public class Stack<Item> implements Iterable<Item> {
 		}
 	}
 }
-
 ```
 
 Array implementation:
@@ -168,7 +166,6 @@ public class Stack<Item> implements Iterable<Item> {
 		}
 	}
 }
-
 ```
 
 ## Bag
