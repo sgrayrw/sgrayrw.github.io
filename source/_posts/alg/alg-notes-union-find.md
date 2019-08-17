@@ -84,15 +84,15 @@ Use weighted quick union: avoid putting larger trees under smaller trees, in ter
 ### Improvement 2: path compression
 On the way up to the root, make every other node point to its grandparent (halfing path length w/ constant extra time)
 
-{% codeblock lang:go %}
-func root(i int) int {
-	for i != arr[i] {
+```java
+public int root(int i) {
+	while(i != arr[i]) {
 		arr[i] = arr[arr[i]] // rebase parent
 		i = arr[i]
 	}
 	return i
 }
-{% endcodeblock %}
+```
 
 *WQUPC* (Weighted quick union with path compression)
 > time: N + M lg* N, for M union-find ops on a set of N objects

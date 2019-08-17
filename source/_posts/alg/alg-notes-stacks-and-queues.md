@@ -16,20 +16,20 @@ categories: Algorithm Notes
 **Efficient use of memory**
 When implementing stacks using array in Java:
 
-{% codeblock lang:java %}
+```java
 public String pop() {
 	return s[--N];
 }
-{% endcodeblock %}
+```
 
 The above implementation has a problem called *loitering*, as `s[N]` after `pop()` is still in the array and being referenced. To have a more efficient use of memory, do:
 
-{% codeblock lang:java %}
+```java
 public String pop() {
 	String ret = s[--N];
 	s[N] = null;
 	return ret;
 }
-{% endcodeblock %}
+```
 
 so that the garbage collector can reclaim the memory.
