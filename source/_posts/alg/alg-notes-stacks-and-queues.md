@@ -171,3 +171,6 @@ public class Stack<Item> implements Iterable<Item> {
 ## Bag
 
 An collection of elements where order doesn't matter.
+
+## Practice
+[Queues](https://github.com/sgrayrw/alg-practices)
