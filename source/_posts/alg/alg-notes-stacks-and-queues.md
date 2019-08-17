@@ -131,13 +131,13 @@ public class Stack<Item> implements Iterable<Item> {
 	}
 
 	private class StackIterator implements Iterator<Item> {
-		private Node current = first;
+		Node current = first;
 
-		public boolean hasNext() {
+		boolean hasNext() {
 			return current != null;
 		}
 
-		public Item next() {
+		Item next() {
 			Item item = current.item;
 			current = current.next;
 			return item;
@@ -155,13 +155,13 @@ public class Stack<Item> implements Iterable<Item> {
 	}
 
 	private class StackIterator implements Iterator<Item> {
-		private int i = N;
+		int i = N;
 
-		public boolean hasNext() {
+		boolean hasNext() {
 			return i > 0
 		}
 
-		public Item next() {
+		Item next() {
 			return arr[--i];
 		}
 	}
