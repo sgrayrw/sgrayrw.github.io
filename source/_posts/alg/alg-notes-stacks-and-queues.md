@@ -90,6 +90,8 @@ so that the garbage collector can reclaim the memory.
 
 Similar to stacks, implementations including linked-list and resizing array. Both requires maintaining two pointers: first and last.
 
+- In linked-list implementation, `enqueue` to `last` and `dequeue` from `first` to ensure that the for-each loop iterates in *FIFO* order.
+
 ## Generics
 
 ```java
