@@ -105,4 +105,4 @@ public int root(int i) {
 
 ## Applications
 *Percolation model*, etc.
-[Source code on practice problem](https://github.com/sgrayrw/alg-practices)
+[Source code on practice problem](https://github.com/sgrayrw/alg-practices#percolation)

@@ -175,4 +175,4 @@ public class Stack<Item> implements Iterable<Item> {
 An collection of elements where order doesn't matter.
 
 ## Practice
-[Queues](https://github.com/sgrayrw/alg-practices)
+[Queues](https://github.com/sgrayrw/alg-practices#queues)
