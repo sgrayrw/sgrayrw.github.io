@@ -5,7 +5,7 @@ tags: Algorithm
 categories: Algorithm Notes
 ---
 
-[Lecture Slides](https://d3c33hcgiwev3.cloudfront.net/_b65e7611894ba175de27bd14793f894a_15UnionFind.pdf?Expires=1566000000&Signature=DPVm7YGkF74ygGv6se5SQSbeQHlKk8uGqWqUyiiR2ZXw91-Jslhq1RZFK~ZLNr9KJVv6sqgFj3ms19TjdJz6luED7icOiskd65vLy9yA4wdAGGQFvYDKwy5TuL1YTpwQIMyNQsmMjEzQ2W4j7iQ5UPA2FhshEsQkVqpLCvbqLiI_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A)
+{% asset_link slides.pdf Lecture slides %}
 
 ## Dynamic Connectivity
 Two main ops:
