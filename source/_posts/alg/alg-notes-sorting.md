@@ -18,7 +18,7 @@ Implement the `Comparable` interface so that any sorting function can call back 
 
 ```java
 public interface Comparable<Item> {
-	public int compareTo(Item other);
+    public int compareTo(Item other);
 }
 ```
 
@@ -26,10 +26,10 @@ Sort implementation:
 
 ```java
 public static void sort(Comparable[] arr) {
-	// ...
-	if (arr[i].compareTo(arr[j]) < 0) {
-		// ...
-	}
+    // ...
+    if (arr[i].compareTo(arr[j]) < 0) {
+        // ...
+    }
 }
 ```
 
@@ -39,14 +39,14 @@ In the ith iteration, find the ith smallest element and swap with `arr[i]`.
 
 ```java
 for (int i = 0; i < arr.length; i++) {
-	int curMin = i;
+    int curMin = i;
 
-	for (int j = i + 1; j < arr.length; j++) {
-		if (less(arr, j, curMin))
-			curMin = j;
-	}
+    for (int j = i + 1; j < arr.length; j++) {
+        if (less(arr, j, curMin))
+            curMin = j;
+    }
 
-	swap(arr, i, curMin);
+    swap(arr, i, curMin);
 }
 ```
 
@@ -59,18 +59,18 @@ In the ith iteration, move the ith element to its left until in the right positi
 
 ```java
 for (int i = 0; i < arr.length; i++) {
-	for (int j = i; j > 0; j--) {
-		if (less(arr, j, j-1))
-			swap(arr, j, j-1);
-		else
-			break; // already in the right pos
-	}	
+    for (int j = i; j > 0; j--) {
+        if (less(arr, j, j-1))
+            swap(arr, j, j-1);
+        else
+            break; // already in the right pos
+    }   
 }
 ```
 
 **Time complexity**
 - O(n) for *partially sorted arrays*.
-	\# of `swap` equals # of *inversions*
+    \# of `swap` equals # of *inversions*
 - O(n^2) worst case
 
 *Partially sorted array*: where # of inversions <= c * N

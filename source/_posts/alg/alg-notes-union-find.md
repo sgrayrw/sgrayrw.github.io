@@ -11,7 +11,7 @@ categories: Algorithm Notes
 Two main ops:
 - union command: connect two objects.
 - find/connected query: is there a path connecting two objects?
-	(not actually finding the path, which is in course part II)
+    (not actually finding the path, which is in course part II)
 
 <!-- more -->
 
@@ -55,8 +55,8 @@ therefore associates each item with a root, which represents the connected compo
 
 **Time complexity**
 - `root`: O(n)
-	- find: O(n)
-	- union: O(n)
+    - find: O(n)
+    - union: O(n)
 Since trees could get tall, method `root` could be expensive.
 
 
@@ -76,9 +76,9 @@ Use weighted quick union: avoid putting larger trees under smaller trees, in ter
 
 **Time complexity**
 - `root`: O(depth of tree) -> [O(log n)](https://stackoverflow.com/a/2307330/10467797)
-	- for the tree here and BST in general, in terms of time, `m` time allows <code>2<sup>m</sup></code> elements to be searched, so `n` elements require at most `log n` time (inverse relation)
-	- find: O(log n)
-	- union: O(log n)
+    - for the tree here and BST in general, in terms of time, `m` time allows <code>2<sup>m</sup></code> elements to be searched, so `n` elements require at most `log n` time (inverse relation)
+    - find: O(log n)
+    - union: O(log n)
 
 
 ### Improvement 2: path compression
@@ -86,11 +86,11 @@ On the way up to the root, make every other node point to its grandparent (halfi
 
 ```java
 public int root(int i) {
-	while(i != arr[i]) {
-		arr[i] = arr[arr[i]] // rebase parent
-		i = arr[i]
-	}
-	return i
+    while(i != arr[i]) {
+        arr[i] = arr[arr[i]] // rebase parent
+        i = arr[i]
+    }
+    return i
 }
 ```
 
@@ -100,7 +100,7 @@ public int root(int i) {
 **Time Complexity**
 - find and union: practically O(1)
 
-	> very, very nearly, but not quite 1 (amortized)
+    > very, very nearly, but not quite 1 (amortized)
 
 
 ## Applications
