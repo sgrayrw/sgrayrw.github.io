@@ -72,7 +72,7 @@ so that the garbage collector can reclaim the memory.
 
     Time Complexity: O(1) for `push` operation. (using [amortized analysis of algs](https://stackoverflow.com/questions/11102585/what-is-amortized-analysis-of-algorithms))
 
-3. Half the size when array is 1/4 full. (not 1/2 to avoid *thrashing* (push-pop-push...))
+3. Halve the size when array is 1/4 full. (not 1/2 to avoid *thrashing* (push-pop-push...))
 
     ```java
     public String pop() {
