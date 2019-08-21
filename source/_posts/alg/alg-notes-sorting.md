@@ -1,7 +1,6 @@
 ---
 title: Algorithm Notes -- Sorting
 date: 2019-08-17 18:58:32
-tags: Algorithm
 categories: Algorithm Notes
 ---
 
