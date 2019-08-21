@@ -171,3 +171,42 @@ public static void sort(Comparable[] arr) {
     }
     ```
 2. return if already sorted (last element in first half <= first in second half)
+
+## Comparator (Java)
+
+`sort()` can take in a `Comparator` to support customized ordering.
+
+```java
+public static void sort(Object[] arr, Comparator c) {
+    // ...
+    if (less(c, arr, i, i-1)) {
+        // ...
+    }
+}
+
+public static void less(Comparator c, Object[] arr, int i, int j) {
+    return c.compare(arr[i], arr[j]) < 0;
+}
+```
+
+Example of `Comparator` implementation:
+
+```java
+public class Item {
+    public static final Comparator<Item> BY_DATE = new ByDate();
+    // ...
+
+    private static class ByDate implements Comparator<Item> {
+        public int compare(Item x, Item y) {
+            return x.date - y.date;
+        }
+    }
+}
+```
+
+To use the `Comparator`:
+
+```java
+sort(arr, Item.BY_DATE);
+```
+
