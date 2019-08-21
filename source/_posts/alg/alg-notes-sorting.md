@@ -5,7 +5,7 @@ tags: Algorithm
 categories: Algorithm Notes
 ---
 
-{% asset_link slides-merge-sort.pdf Lecture slides -- merge sort %}
+Lecture slides -- {% asset_link slides-elementary-sorts.pdf elementary sorts %} / {% asset_link slides-merge-sort.pdf merge sort %} / {% asset_link slides-quick-sort.pdf quick sort %}
 
 
 ## Sorting in Java
