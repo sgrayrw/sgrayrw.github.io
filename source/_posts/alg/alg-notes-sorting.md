@@ -92,7 +92,6 @@ In the ith iteration, generate a random number r between **0 and i**, then swap 
 
 **Time complexity:** O(n)
 
-
 ## Merge Sort
 
 Divide the array into two subarrays, **recursively** sort them, and then merge them into one sorted array.
@@ -121,8 +120,9 @@ public static void merge(Comparable[] arr, Comparable[] aux, int lo, int mid, in
         // second half out of elements
         else if (j > hi)            arr[k++] = aux[i++];
         // pick smaller element from two subarrays
-        else if (less(aux, i, j))   arr[k++] = aux[i++];
-        else                        arr[k++] = aux[j++];
+        // important: take from the first half if equal to preserve stability
+        else if (less(aux, j, i))   arr[k++] = aux[j++];
+        else                        arr[k++] = aux[i++];
     }
 
     // postcondition: whole array sorted
@@ -209,4 +209,33 @@ To use the `Comparator`:
 ```java
 sort(arr, Item.BY_DATE);
 ```
+
+## Stability
+
+A sorting algorithm is *stable* if it preserves the order of the input array for elements with same sorting keys.
+
+| sorting alg    | is stable | reason                                                       |
+| :------------- | --------- | ------------------------------------------------------------ |
+| insertion sort | yes       | only move element back (`swap`) when `less()` returns true <br />so that equal elements don't move past each other |
+| selection sort | no        | long-distance `swap` might break order of equal elements     |
+| shellsort      | no        | also long-distance `swap`                                    |
+| merge sort     | yes       | always take element from the first half if keys equal        |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
