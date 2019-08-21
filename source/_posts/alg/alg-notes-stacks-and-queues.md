@@ -48,7 +48,6 @@ so that the garbage collector can reclaim the memory.
     }
     ```
 
-
 2. Double the size of the underlying array when full.
 
     ```java

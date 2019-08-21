@@ -88,8 +88,87 @@ E.g.: For `arr` with length 7, 7-sort, 3-sort, and finally 1-sort (insertion sor
 
 ## Shuffle Sort (just shuffling)
 
-Knuth shuffle / Fisher-Yates shuffle:
-- In the ith iteration, generate a random number r between **0 and i**, then swap `arr[r]` and `arr[i]`.
-- O(n) time complexity.
+*Knuth shuffle / Fisher-Yates shuffle*
+In the ith iteration, generate a random number r between **0 and i**, then swap `arr[r]` and `arr[i]`.
+
+**Time complexity:** O(n)
 
 
+## Merge Sort
+
+Divide the array into two subarrays, **recursively** sort them, and then merge them into one sorted array.
+
+Implementation: using an extra array `aux` to hold data, then moving elements back to `arr` in sorted order by merging.
+
+{% asset_img merge.png in-place merge w/ aux array %}
+
+```java
+public static void merge(Comparable[] arr, Comparable[] aux, int lo, int mid, int hi) {
+    // precondition: first half sorted
+    assert sorted(arr, lo, mid);
+    // precondition: second half sorted
+    assert sorted(arr, mid+1, hi);
+
+    // copy arr to aux
+    for (int k = lo; k <= hi; k++) {
+        aux[i] = arr[i];
+    }
+
+    // merge
+    int k = lo; int i = lo; j = mid + 1;
+    while (k <= hi) {
+        // first half out of elements
+        if      (i > mid)           arr[k++] = aux[j++];
+        // second half out of elements
+        else if (j > hi)            arr[k++] = aux[i++];
+        // pick smaller element from two subarrays
+        else if (less(aux, i, j))   arr[k++] = aux[i++];
+        else                        arr[k++] = aux[j++];
+    }
+
+    // postcondition: whole array sorted
+    assert sorted(arr, lo, hi);
+}
+```
+
+Then `sort()` will be:
+
+```java
+public static void sort(Comparable[] arr, Comparable[] aux, int lo, int hi) {
+    // base case
+    if (lo >= hi)   return;
+
+    int mid = lo + hi / 2;
+
+    // sort two halves
+    sort(arr, aux, lo, mid);
+    sort(arr, aux, mid+1, hi);
+
+    // merge
+    merge(arr, aux, lo, mid, hi);
+}
+
+public static void sort(Comparable[] arr) {
+    // create aux array
+    // important: create here and pass in as an arg instead of declaring
+    // and initializing new `aux` in each recursion to avoid cost
+    aux = new Comparable[arr.length];
+
+    // sort
+    sort(arr, aux, 0, arr.length-1);
+}
+```
+
+**Time complexity:** [O(n log n)](https://softwareengineering.stackexchange.com/a/297203)
+
+**Improvements**
+
+1. use insertion sort for tiny subarrays
+
+    ```java
+    if (hi - lo < CUTOFF) {
+        Insertion.sort(arr, lo, hi);
+        return;
+    }
+    ```
+2. return if already sorted (last element in first half <= first in second half)
