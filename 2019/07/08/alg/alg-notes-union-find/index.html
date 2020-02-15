@@ -1,0 +1,102 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Algorithm Notes -- Union Find"><meta name="keywords" content><meta name="author" content="Yuxiao Wang"><meta name="copyright" content="Yuxiao Wang"><title>Algorithm Notes -- Union Find | Yuxiao Wang's notes</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic-Connectivity"><span class="toc-text">Dynamic Connectivity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Find"><span class="toc-text">Quick Find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Union"><span class="toc-text">Quick Union</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Union-Improvements"><span class="toc-text">Quick Union Improvements</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Improvement-1-weighted-quick-union"><span class="toc-text">Improvement 1: weighted quick union</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Improvement-2-path-compression"><span class="toc-text">Improvement 2: path compression</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Applications"><span class="toc-text">Applications</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Yuxiao Wang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">1</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://rayrw.com/images/君の知らない物語.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Yuxiao Wang's notes</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Algorithm Notes -- Union Find</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Algorithm-Notes/">Algorithm Notes</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><a href="/2019/07/08/alg/alg-notes-union-find/slides.pdf" title="Lecture slides">Lecture slides</a>
+
+<h2 id="Dynamic-Connectivity"><a href="#Dynamic-Connectivity" class="headerlink" title="Dynamic Connectivity"></a>Dynamic Connectivity</h2><p>Two main ops:</p>
+<ul>
+<li>union command: connect two objects.</li>
+<li>find/connected query: is there a path connecting two objects?<br>  (not actually finding the path, which is in course part II)</li>
+</ul>
+<a id="more"></a>
+
+<p>“is connected to” is an <em>equivalence relation</em>. (reflexive, symmetric, transitive)</p>
+<p><em>Connected components</em>: maximal <em>set</em> of objects that are mutually connected.</p>
+<p>This way,</p>
+<ul>
+<li>find -&gt; check if two objects are in the same component</li>
+<li>union -&gt; union two components</li>
+</ul>
+<h2 id="Quick-Find"><a href="#Quick-Find" class="headerlink" title="Quick Find"></a>Quick Find</h2><p>An <em>eager algorithm</em> to solve dynamic connectivity problem.</p>
+<p><strong>Data structure</strong></p>
+<ul>
+<li>each number as index of an array, initially <code>arr[n] = n</code></li>
+</ul>
+<p><strong>Operation</strong></p>
+<ul>
+<li>find: num <code>p</code> and <code>q</code> are connected if <code>arr[p] == arr[q]</code></li>
+<li>union: to union <code>p</code> and <code>q</code>, for all <code>i</code> where <code>arr[i] == arr[p]</code>, <code>arr[i] = arr[q]</code></li>
+</ul>
+<p><strong>Time complexity</strong></p>
+<ul>
+<li>find: O(1)</li>
+<li>union: O(n), too expensive</li>
+</ul>
+<h2 id="Quick-Union"><a href="#Quick-Union" class="headerlink" title="Quick Union"></a>Quick Union</h2><p>A <em>lazy approach</em>.</p>
+<p><strong>Data structure</strong></p>
+<ul>
+<li>still <code>arr</code> of size <code>n</code></li>
+<li><code>arr[i]</code> is the parent of <code>i</code></li>
+<li><em>root</em> of <code>i</code> is <code>arr[arr[...arr[i]...]]</code></li>
+</ul>
+<p>therefore associates each item with a root, which represents the connected component.</p>
+<p><strong>Operation</strong></p>
+<ul>
+<li>find: check if <code>p</code> and <code>q</code> have the same root</li>
+<li>union: if <code>x == root(p)</code> and <code>y == root(q)</code>, then <code>arr[x] = y</code>, meaning that x’s parent now becomes y</li>
+</ul>
+<p><strong>Time complexity</strong></p>
+<ul>
+<li><code>root</code>: O(n)<ul>
+<li>find: O(n)</li>
+<li>union: O(n)<br>Since trees could get tall, method <code>root</code> could be expensive.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Quick-Union-Improvements"><a href="#Quick-Union-Improvements" class="headerlink" title="Quick Union Improvements"></a>Quick Union Improvements</h2><h3 id="Improvement-1-weighted-quick-union"><a href="#Improvement-1-weighted-quick-union" class="headerlink" title="Improvement 1: weighted quick union"></a>Improvement 1: weighted quick union</h3><p>Use weighted quick union: avoid putting larger trees under smaller trees, in terms of the number of nodes. (<a href="https://stackoverflow.com/a/30958496/10467797" target="_blank" rel="noopener">doesn’t quite matter</a> whether comparing by size or height)</p>
+<img src="/2019/07/08/alg/alg-notes-union-find/qu_vs_quweighted.png" title="quick union vs weighted quick union">
+
+<p><strong>Data Structure</strong></p>
+<ul>
+<li>add extra array <code>sz</code> to track # of objects in the tree rooted at <code>i</code></li>
+</ul>
+<p><strong>Operation</strong></p>
+<ul>
+<li>find: same</li>
+<li>union: attach roots <code>x</code> and <code>y</code> to each other based on <code>sz[x]</code> and <code>sz[y]</code></li>
+</ul>
+<p><strong>Time complexity</strong></p>
+<ul>
+<li><code>root</code>: O(depth of tree) -&gt; <a href="https://stackoverflow.com/a/2307330/10467797" target="_blank" rel="noopener">O(log n)</a><ul>
+<li>for the tree here and BST in general, in terms of time, <code>m</code> time allows <code>2<sup>m</sup></code> elements to be searched, so <code>n</code> elements require at most <code>log n</code> time (inverse relation)</li>
+<li>find: O(log n)</li>
+<li>union: O(log n)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Improvement-2-path-compression"><a href="#Improvement-2-path-compression" class="headerlink" title="Improvement 2: path compression"></a>Improvement 2: path compression</h3><p>On the way up to the root, make every other node point to its grandparent (halfing path length w/ constant extra time)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i != arr[i]) &#123;</span><br><span class="line">        arr[i] = arr[arr[i]] <span class="comment">// rebase parent</span></span><br><span class="line">        i = arr[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>WQUPC</em> (Weighted quick union with path compression)</p>
+<blockquote>
+<p>time: N + M lg* N, for M union-find ops on a set of N objects</p>
+</blockquote>
+<p><strong>Time Complexity</strong></p>
+<ul>
+<li><p>find and union: practically O(1)</p>
+<blockquote>
+<p>very, very nearly, but not quite 1 (amortized)</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h2><p><em>Percolation model</em>, etc.<br><a href="https://github.com/sgrayrw/alg-practices#percolation" target="_blank" rel="noopener">Source code on practice problem</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Yuxiao Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://rayrw.com/2019/07/08/alg/alg-notes-union-find/">http://rayrw.com/2019/07/08/alg/alg-notes-union-find/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/07/21/alg/alg-notes-stacks-and-queues/"><i class="fa fa-chevron-left">  </i><span>Algorithm Notes -- Stacks and Queues</span></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://rayrw.com/images/君の知らない物語.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2019 - 2020 By Yuxiao Wang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
